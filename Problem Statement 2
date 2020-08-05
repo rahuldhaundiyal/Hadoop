@@ -1,6 +1,15 @@
 Do analysis on sales data in the HDFS & get the total number of 'Large'
 deal size?
 
+
+Load the data into hdfs: hadoop -fs put '/home/cloudera/desktop/sales.csv' '/user/cloudera/'
+Start Pig using "pig - x mapreduce" command in cloudera shell.
+--Load the data into pig using--
+sales = 'load /user/cloudera/sales.csv' using PigStorage(',') as 
+(ordernumber:int, customername:chararray, productline:chararray
+Quantityorded:int, priceeach:int,saleprice:int,orderdate:chararray
+,status:chararray,Dealsize"chararray);
+
 filter_sales = filter sales by (dealsize == 'Large');
 Group_all = group filter_sales All;
 count_dealsize= foreach Group_all generate COUNT(filter_sales);
