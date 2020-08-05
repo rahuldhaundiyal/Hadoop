@@ -1,0 +1,7 @@
+Do analysis on sales data in the HDFS & get the total number of 'Large'
+deal size?
+
+filter_sales = filter sales by (dealsize == 'Large');
+Group_all = group filter_sales All;
+count_dealsize= foreach Group_all generate COUNT(filter_sales);
+dump count_dealsize;
