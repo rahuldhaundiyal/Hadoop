@@ -1,0 +1,19 @@
+Do analysis on sales data in the hdfs & get the customer name which done highest business with abc
+
+----Solution: Using Pig Latin----
+Load the data into hdfs: hadoop -fs put '/home/cloudera/desktop/sales.csv' '/user/cloudera/'
+Start Pig using "pig - x mapreduce" command in cloudera shell.
+--Load the data into pig using--
+sales = 'load /user/cloudera/sales.csv' using PigStorage(',') as 
+(ordernumber:int, customername:chararray, productline:chararray
+Quantityorded:int, priceeach:int,saleprice:int,orderdate:chararray
+,status:chararray);
+
+--Generate only desired column using foreach-- 
+
+A=foreach sales generate(customername, saleprice);
+B = order A by saleprice desc;
+C = limit B 1;
+D = foreach C generate (customername,saleprice);
+Dump;
+
