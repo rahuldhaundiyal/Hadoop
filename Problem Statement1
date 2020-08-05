@@ -17,3 +17,5 @@ C = limit B 1;
 D = foreach C generate (customername,saleprice);
 Dump;
 
+Ouutput will be 
+(The Sharp Gifts Warehouse,14082.8)
